@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check In Cafe</title>
+    <style>
+        :root {
+            --btn-min-width: 10rem;
+            --btn-max-width: 16rem;
+        }
+
+        .container{
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.37);
+            height: 720px;
+            width: 600px;
+        }
+
+        .top{
+            background-image: url("./img/TOP.png");
+            background-size: cover;
+            height: 720px;
+            width: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;    
+        }
+        .title{
+            color: rgb(225, 232, 239);
+            padding-bottom: 32px;
+        }
+
+        h1{
+            font-weight: 700;
+            font-size: 48px;
+        }
+        .buttons{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;  
+        }
+
+        .start-button {
+        background-color: #e0e0e0;
+        color: #333;
+        min-width: var(--btn-min-width);
+        max-width: var(--btn-max-width);
+        padding: 0.5rem 1rem;   /* 余白は rem 単位で調整 */
+        font-size: 16px;        /* ボタンの文字サイズ */
+        font-weight: 600;
+        border: 1px solid #ccc;    /* 薄い境界線 */
+        border-radius: 8px;        /* 角を丸く */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* 軽い影で浮き上がり感 */
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        }
+
+        .start-button:hover {
+        background-color: #d5d5d5;  /* Hover時に少し濃く */
+        }
+
+        .start-button:active {
+        background-color: #c8c8c8;  /* 押下時にさらに変化 */
+        }
+
+        .start-button:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(100,100,100,0.3);  /* フォーカス時のリング */
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <div class="container">
+        <div class="top">
+            <div class="title">
+                <h1>Check In Cafe</h1>
+            </div>
+            <div class="buttons">
+                <button class="start-button" type="button" onclick="location.href='checkin.html';">チェックイン</button>
+                <button class="start-button" type="button" onclick="location.href='#';">Coming Soon</button>
+            </div>
+        </div>
+    </div>
+    
+
+    <script>
+    </script>
+</body>
+</html>

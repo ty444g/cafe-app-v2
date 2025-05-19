@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check In Cafe</title>
+    <style>
+        .container{
+            border-radius: 30px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.37);
+            height: 1080px;
+            width: 600px;
+            background-image: url("./img/main_mask.png");
+            background-size: cover;
+        }
+
+        .choose_cafe{
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .choose_cafe button{
+            width: 120px;
+            height: 120px;
+            padding: 0;               /* デフォルトのパディングをリセット */
+            border-radius: 20%;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.37);
+        }
+
+        .choose_cafe button img {
+            display: block;           /* 下の余分なスペースを消す */
+            width: 100%;              /* 横いっぱいに */
+            height: 100%;             /* 高さもいっぱいに */
+            object-fit: contain;      /* アスペクト比を保ちつつ収める */
+            /* object-fit: cover; で、縦横比を保ちつつ枠いっぱいに切り抜き表示も可 */
+        }
+
+
+        .random_cafe button{
+            width: 120px;
+            height: 120px;
+            padding: 0;               /* デフォルトのパディングをリセット */
+            border-radius: 20%;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.37);
+        }
+
+        .random_cafe button img {
+            display: block;           /* 下の余分なスペースを消す */
+            width: 100%;              /* 横いっぱいに */
+            height: 100%;             /* 高さもいっぱいに */
+            object-fit: contain;      /* アスペクト比を保ちつつ収める */
+            /* object-fit: cover; で、縦横比を保ちつつ枠いっぱいに切り抜き表示も可 */
+        }
+
+
+
+        .final_cafe div{
+            width: 120px;
+            height: 120px;
+            padding: 0;               /* デフォルトのパディングをリセット */
+            border-radius: 20%;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.37);
+        }
+
+        .final_cafe div img {
+            display: block;           /* 下の余分なスペースを消す */
+            width: 100%;              /* 横いっぱいに */
+            height: 100%;             /* 高さもいっぱいに */
+            object-fit: contain;      /* アスペクト比を保ちつつ収める */
+            /* object-fit: cover; で、縦横比を保ちつつ枠いっぱいに切り抜き表示も可 */
+        }
+
+
+        .final_cafe{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 32px;
+        }
+
+
+        .checkIn {
+            background-color: #e0e0e0;  /* 薄いグレー */
+            color: #333;               /* 濃い文字色でコントラストを確保 */
+            padding: 0.5rem 4rem;   /* 余白は rem 単位で調整 */
+            margin-top: 3rem;     /* お好みのサイズに調整 */
+            font-size: 16px;        /* ボタンの文字サイズ */
+            font-weight: 600;
+            border: 1px solid #ccc;    /* 薄い境界線 */
+            border-radius: 8px;        /* 角を丸く */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);  /* 軽い影で浮き上がり感 */
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .checkIn:hover {
+            background-color: #d5d5d5;  /* Hover時に少し濃く */
+        }
+
+        .checkIn:active {
+            background-color: #c8c8c8;  /* 押下時にさらに変化 */
+        }
+
+        .checkIn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(100,100,100,0.3);  /* フォーカス時のリング */
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="title">
+            <h1>Check In Cafe</h1>
+        </div>
+
+        <div class="favorite">
+            <h2>お気に入りのカフェから選ぶ</h2>
+            <div class="choose_cafe">
+                <button id="starbucks"><img src="./img/starbucks.png" alt="スターバックスの画像"></button>
+                <button id="doutor"><img src="./img/doutor.png" alt="ドトールの画像"></button>
+                <button id="lawson"><img src="./img/lawson.png" alt="ローソンの画像"></button>
+            </div>
+        </div>
+
+        <div class="random">
+            <h2>ランダムに選ぶ</h2>
+            <div class="random_cafe">
+                <button id="random_cafe_start"><img src="./img/random_icon.png" alt="ハテナアイコンの画像"></button>
+            </div>
+        </div>
+
+        <div class="result">
+            <h2>選択されたカフェ</h2>
+            <div class="final_cafe">
+                <div class="select_cafe_img"><img src="./img/random_icon.png" alt="noimage"></div>
+                <!-- <p class="select_cafe_name">カフェが選択されていません</p> -->
+            </div>
+
+            <h2>メニュー</h2>
+            <p>メニューを入力（任意）</p>
+            <input id="menu" type="text" placeholder="例）カフェラテ、チーズケーキ" />
+
+            <h2>備考</h2>
+            <p>備考を入力（任意）</p>
+            <input id="comment" type="text" placeholder="例）金額、コメントなど" />
+
+            <div>
+                <button id="checkIn" class="checkIn">CheckIn</button>
+            </div>
+            <div>
+                <div id="display"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // const selectCafeNameEl = document.querySelector(".select_cafe_name");
+        const selectCafeImgEl = document.querySelector(".select_cafe_img");
+        const menuEl     = document.querySelector('#menu');       // メニュー入力欄を取得
+        const commentEl     = document.querySelector('#comment');       // コメント入力欄を取得
+        const displayEl  = document.querySelector('#display');    // 日時表示用要素を取得
+        const checkInBtn = document.querySelector('#checkIn');    // CheckIn ボタンを取得
+
+         // 他のカフェを追加する
+        function getRandomCafe(){
+            const cafes = ["starbucks", "doutor", "lawson", "komeda", "tullys", "seven-eleven"];
+            return cafes[Math.floor(Math.random() * 6)];
+        };
+       
+
+        random_cafe_start.addEventListener("click",() => {
+            const randomCafe = getRandomCafe();
+            // selectCafeNameEl.textContent = `${randomCafe}`;
+            selectCafeImgEl.innerHTML =  `<div class="select_cafe_img"><img src="./img/${randomCafe}.png" alt="${randomCafe}"></div>`;
+        });
+
+        document.querySelectorAll(".choose_cafe button").forEach(btn => {
+            btn.addEventListener("click",() => {
+                const chooseCafe = btn.id;
+                // selectCafeNameEl.textContent = `${chooseCafe}`;
+                selectCafeImgEl.innerHTML = `<div class="select_cafe_img"><img src="./img/${chooseCafe}.png" alt="${chooseCafe}"></div>`;
+            });
+        });
+
+        // checkIn.addEventListener("click",() => {
+        checkInBtn.addEventListener("click", async () => {
+            const now = new Date();
+
+            // 日付部分
+            const dateString = now.toLocaleDateString('ja-JP', {
+            year:  'numeric',
+            month: '2-digit',
+            day:   '2-digit'
+            });
+
+            const timeString = now.toLocaleTimeString('ja-JP', {
+            hour:   '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+            });
+
+            // 結合して表示
+            const dateTime = `${dateString} ${timeString}`;
+            
+            // 例： "2025/05/11 14:30:05"
+
+            // 時刻を表示する用
+            display.textContent = dateTime;
+
+            const imgEl = selectCafeImgEl.querySelector('img');
+            const altText = imgEl ? imgEl.alt : '';
+            // alert(altText);
+            let cliptext = `${dateTime} | ${altText}`;    
+            // const cliptext = dateTime + " | " + altText;
+            const menuValue = menuEl.value.trim();
+            if (menuValue) {
+            cliptext += ` | メニュー: ${menuValue}`;
+            }
+
+            const commentValue = commentEl.value.trim();
+            if (commentValue) {
+            cliptext += ` | 備考: ${commentValue}`;
+            }
+
+            try {
+            // Clipboard API を使ってクリップボードに書き込む
+            navigator.clipboard.writeText(cliptext);
+            alert('ENJOY COFFEE!!  =>  ' + cliptext );
+            } catch (err) {
+            console.error('コピーエラー:', err);
+            alert('コピーに失敗しました…');
+            }
+        });
+
+    </script>
+    
+</body>
+</html>
